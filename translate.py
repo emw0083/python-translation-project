@@ -79,8 +79,8 @@ def get_reverse(sequence):
     #print("the DNA squence is: \n", sequence)
     #str_seq = str(sequence)
     #expected_result = str_seq[::-1]
-    sequence_upper = sequence.upper()
-    return sequence_upper[::-1]
+    reverse = sequence.upper()
+    return reverse[::-1]
     #final_seq = str(sequence_rev)
     #print("the reversed DNA sequence is: \n", expected_result)
    # print(type(expected_result))
@@ -103,10 +103,10 @@ def get_complement(sequence):
     
     sequence_upper = sequence.upper()
     comp = {'A':'U', 'C':'G', 'G':'C', 'T':'A', 'U':'A'}
-    compDNA = ''
+    compSEQ = ''
     for i in sequence_upper:
-        compDNA += comp[i]
-    return compDNA
+        compSEQ += comp[i]
+    return compSEQ
 
 ##------------------------------------------------------------------------
 
@@ -123,7 +123,11 @@ def reverse_and_complement(sequence):
     >>> reverse_and_complement('AUGC')
     'GCAU'
     """
-    pass
+    compSEQ = get_complement(sequence)
+   # print(compSEQ)
+    rev_comp_seq = get_reverse(compSEQ)
+   # print(rev_comp_seq)
+    return rev_comp_seq
 
 def get_longest_peptide(rna_sequence, genetic_code):
     """Get the longest peptide encoded by an RNA sequence.
