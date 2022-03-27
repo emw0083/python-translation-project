@@ -100,15 +100,15 @@ def get_complement(sequence):
     >>> get_complement('AUGC')
     'UACG'
     """
-    print("the DNA squence is: \n", sequence)
-    for i in sequence:
-        if (i == "A"): print("T", end = '')
-        elif (i == "T"): print("A", end = '')
-        elif (i == "C"): print("G", end = '')
-        elif (i == "G"): print("C", end = '')
-        
-        
+    
+    sequence_upper = sequence.upper()
+    comp = {'A':'U', 'C':'G', 'G':'C', 'T':'A', 'U':'A'}
+    compDNA = ''
+    for i in sequence_upper:
+        compDNA += comp[i]
+    return compDNA
 
+##------------------------------------------------------------------------
 
 def reverse_and_complement(sequence):
     """Get the reversed and complemented form of a `sequence` of nucleotides.
