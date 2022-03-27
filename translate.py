@@ -75,7 +75,10 @@ def get_reverse(sequence):
     >>> get_reverse('AUGC')
     'CGUA'
     """
-    pass
+    print("the DNA squence is: \n", sequence)
+    sequence_rev = sequence[::-1]
+    final_seq = str(sequence_rev)
+    print("the reversed DNA sequence is: \n", sequence_rev)
 
 def get_complement(sequence):
     """Get the complement of a `sequence` of nucleotides.
