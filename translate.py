@@ -75,10 +75,17 @@ def get_reverse(sequence):
     >>> get_reverse('AUGC')
     'CGUA'
     """
+    
     print("the DNA squence is: \n", sequence)
-    sequence_rev = sequence[::-1]
-    final_seq = str(sequence_rev)
-    print("the reversed DNA sequence is: \n", sequence_rev)
+    #str_seq = str(sequence)
+    #expected_result = str_seq[::-1]
+    return sequence[::-1]
+    #final_seq = str(sequence_rev)
+    #print("the reversed DNA sequence is: \n", expected_result)
+   # print(type(expected_result))
+    
+    
+##-------------------------------------------------------------------------------
 
 def get_complement(sequence):
     """Get the complement of a `sequence` of nucleotides.
@@ -92,7 +99,15 @@ def get_complement(sequence):
     >>> get_complement('AUGC')
     'UACG'
     """
-    pass
+    print("the DNA squence is: \n", sequence)
+    for i in sequence:
+        if (i == "A"): print("T", end = '')
+        elif (i == "T"): print("A", end = '')
+        elif (i == "C"): print("G", end = '')
+        elif (i == "G"): print("C", end = '')
+        
+        
+
 
 def reverse_and_complement(sequence):
     """Get the reversed and complemented form of a `sequence` of nucleotides.
