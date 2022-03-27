@@ -76,10 +76,11 @@ def get_reverse(sequence):
     'CGUA'
     """
     
-    print("the DNA squence is: \n", sequence)
+    #print("the DNA squence is: \n", sequence)
     #str_seq = str(sequence)
     #expected_result = str_seq[::-1]
-    return sequence[::-1]
+    sequence_upper = sequence.upper()
+    return sequence_upper[::-1]
     #final_seq = str(sequence_rev)
     #print("the reversed DNA sequence is: \n", expected_result)
    # print(type(expected_result))
