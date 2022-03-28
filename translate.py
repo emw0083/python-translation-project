@@ -36,13 +36,14 @@ def translate_sequence(rna_sequence, genetic_code):
             for i in range(0, len(base_list), 3):
                 codon = ''.join(base_list[i:i+3])
                 aa = genetic_code[codon]
-                return aa
+                aa_list.append(aa)
+                return ''.join(aa_list)
+            if aa == '*':
+                return ''
         else:
             return ''
             print("Base length is less than 3")
         aa = genetic_code[codon]
-        if aa == '*':
-            return ''
         aa_list.append(aa)
     return ''.join(aa_list)
 
