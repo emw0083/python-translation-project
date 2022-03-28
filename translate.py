@@ -28,24 +28,25 @@ def translate_sequence(rna_sequence, genetic_code):
     str
         A string of the translated amino acids.
     """
-    
     aa_list = []
     upper_RNA = rna_sequence.upper()
-    RNA_list = list(upper_RNA)
+    base_list = list(upper_RNA)
     while True:
-        if len(RNA_list) > 2:
-           codon = ''.join(RNA_list[0:3])
-           aa = genetic_code[codon]
-           return aa
-            
+        if len(base_list) > 2:
+            for i in range(0, len(base_list), 3):
+                codon = ''.join(base_list[i:i+3])
+                aa = genetic_code[codon]
+                return aa
         else:
-            break
+            return ''
+            print("Base length is less than 3")
         aa = genetic_code[codon]
         if aa == '*':
             return ''
         aa_list.append(aa)
     return ''.join(aa_list)
 
+            
 #--------------------------------------------------------------------
 
 def get_all_translations(rna_sequence, genetic_code):
