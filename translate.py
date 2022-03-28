@@ -28,25 +28,21 @@ def translate_sequence(rna_sequence, genetic_code):
     str
         A string of the translated amino acids.
     """
-    aa_list = []
-    upper_RNA = rna_sequence.upper()
-    base_list = list(upper_RNA)
+    RNA_list = rna_sequence.upper()
+    result = []
     while True:
-        if len(base_list) > 2:
-            for i in range(0, len(base_list), 3):
-                codon = ''.join(base_list[i:i+3])
-                aa = genetic_code[codon]
-                aa_list.append(aa)
-                return ''.join(aa_list)
-            if aa == '*':
-                return ''
+        if len(RNA_list) > 2:
+            protein_seq = ""
+            for i in range(0, len(RNA_list), 3):
+                codon = RNA_list[i:i+3]
+                protein_seq += genetic_code[codon]
+                if protein_seq == '*':
+                    return ''
+            result.append(protein_seq)
+            return protein_seq
         else:
             return ''
             print("Base length is less than 3")
-        aa = genetic_code[codon]
-        aa_list.append(aa)
-    return ''.join(aa_list)
-
             
 #--------------------------------------------------------------------
 
@@ -81,17 +77,6 @@ def get_all_translations(rna_sequence, genetic_code):
         A list of strings; each string is an sequence of amino acids encoded by
         `rna_sequence`.
     """
-    num_bases = len(rna_sequence)
-    last_first_base_index = num_bases - 3
-
-    polypeptide_list = []
-    for i in range(last_first_base_index + 1):
-        i_end = i + 3
-        next_three = rna_sequence[i:i_end]
-        if next_three == 'AUG':
-            polypeptide = translate_seq(rna_sequence[i:], genetic_code)
-            polypeptide_list.append(polypeptide)
-    return polypeptide_list
 
 
 #---------------------------------------------------------------------------------
@@ -189,7 +174,17 @@ def get_longest_peptide(rna_sequence, genetic_code):
         A string of the longest sequence of amino acids encoded by
         `rna_sequence`.
     """
-    pass
+    num_bases = len(rna_sequence)
+    last_first_base_index = num_bases - 3
+    polypeptide_list = []
+    for i in range(last_first_base_index + 1):
+        i_end = i + 3
+        next_three = rna_sequence[i:i_end]
+        if next_three == 'AUG':
+            polypeptide = translate_seq(rna_sequence[i:], genetic_code)
+            polypeptide_list.append(polypeptide)
+            polypeptide_str = str(polypeptide_list)
+    return polypeptide_str
 
 
 if __name__ == '__main__':
