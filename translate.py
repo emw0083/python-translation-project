@@ -78,22 +78,17 @@ def get_all_translations(rna_sequence, genetic_code):
         `rna_sequence`.
     """
     
-    RNA_list = rna_sequence.upper()
-    num_bases = len(RNA_list)
+    num_bases = len(rna_sequence)
     last_first_base_index = num_bases - 3
 
     polypeptide_list = []
-    for i in range(last_first_base_index + 1):
+    for i in xrange(last_first_base_index + 1):
         i_end = i + 3
         next_three = rna_sequence[i:i_end]
         if next_three == 'AUG':
-            for i in range(0, len(RNA_list), 3):
-                codon = RNA_list[i:i+3]
-                protein_seq += genetic_code[codon]
-                if protein_seq == '*':
-                    return ''
-            result.append(protein_seq)
-    
+            polypeptide = translate_seq(rna_sequence[i:], genetic_code)
+            polypeptide_list.append(polypeptide)
+    return polypeptide_list
 
 #---------------------------------------------------------------------------------
 
