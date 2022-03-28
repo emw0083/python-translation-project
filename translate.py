@@ -30,16 +30,19 @@ def translate_sequence(rna_sequence, genetic_code):
     """
     
     aa_list = []
-    base_list = list(rna)
+    upper_RNA = rna_sequence.upper()
+    RNA_list = list(upper_RNA)
     while True:
-        if len(base_list) > 2:
-            codon = ''.join(base_list[0:3])
-            del base_list[0:3]
+        if len(RNA_list) > 2:
+           codon = ''.join(RNA_list[0:3])
+           aa = genetic_code[codon]
+           return aa
+            
         else:
             break
         aa = genetic_code[codon]
         if aa == '*':
-            break
+            return ''
         aa_list.append(aa)
     return ''.join(aa_list)
 
