@@ -84,13 +84,13 @@ def get_all_translations(rna_sequence, genetic_code):
     """
    
     RNA_list = rna_sequence.upper()
-    num_bases = len(RNA_list)
-    last_first_base_index = num_bases - 3
+    total_bases = len(RNA_list)
+    index = total_bases - 3
 
     protein_list = []
-    for i in range(last_first_base_index + 1):
-        i_end = i + 3
-        next_three = RNA_list[i:i_end]
+    for i in range(index + 1):
+        end = i + 3
+        next_three = RNA_list[i:end]
         if next_three == 'AUG':
             protein = translate_sequence(RNA_list[i:], genetic_code)
             protein_list.append(protein)
