@@ -188,12 +188,25 @@ def get_longest_peptide(rna_sequence, genetic_code):
         `rna_sequence`.
     """
     RNA_list = rna_sequence.upper()
+    polypeptide_list = ''
+    rev_polypeptide_list = ''
+    if len(RNA_list) >= 3:
+        for i in RNA_list:
+            polypeptide_list = get_all_translations(RNA_list, genetic_code)
+            return str(polypeptide_list)
+        for s in RNA_list:
+            rev_c_seq = reverse_and_complement(RNA_list)
+            rev_polypeptide_list = get_all_translations(rev_c_seq, genetic_code)
+            return str(rev_polypeptide_list)
+    else:
+        return ''
+    
     
     polypeptide_list = get_all_translations(RNA_list, genetic_code)
     print(polypeptide_list)
-    offset = len(polypeptide_list)
-    rev_c_seq = reverse_and_complement(RNA_list)
-    polypeptide_list = get_all_translations(rev_c_seq, genetic_code)
+  #  offset = len(polypeptide_list)
+  #  rev_c_seq = reverse_and_complement(RNA_list)
+   # polypeptide_list = get_all_translations(rev_c_seq, genetic_code)
 
 
 if __name__ == '__main__':
