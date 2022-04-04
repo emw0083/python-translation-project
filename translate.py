@@ -90,8 +90,8 @@ def get_all_translations(rna_sequence, genetic_code):
     protein_list = []
     for i in range(index + 1):
         end = i + 3
-        next_three = RNA_list[i:end]
-        if next_three == 'AUG':
+        seq = RNA_list[i:end]
+        if seq == 'AUG':
             protein = translate_sequence(RNA_list[i:], genetic_code)
             protein_list.append(protein)
     return protein_list
@@ -191,8 +191,13 @@ def get_longest_peptide(rna_sequence, genetic_code):
         A string of the longest sequence of amino acids encoded by
         `rna_sequence`.
     """
-  
-  
+    RNA_list = rna_sequence.upper()
+    
+    polypeptide_list = get_all_translations(RNA_list, genetic_code)
+    print(polypeptide_list)
+    #offset = len(polypeptide_list)
+   # rev_c_seq = reverse_and_complement(RNA_list)
+   # polypeptide_list = get_all_translations(rev_c_seq, genetic_code)
 
 
 if __name__ == '__main__':
