@@ -187,26 +187,38 @@ def get_longest_peptide(rna_sequence, genetic_code):
         A string of the longest sequence of amino acids encoded by
         `rna_sequence`.
     """
+    
+
     RNA_list = rna_sequence.upper()
-    polypeptide_list = ''
-    rev_polypeptide_list = ''
+    total_bases = len(RNA_list)
+    index = total_bases - 3
+    
     if len(RNA_list) >= 3:
-        for i in RNA_list:
-            polypeptide_list = get_all_translations(RNA_list, genetic_code)
-            return str(polypeptide_list)
-        for s in RNA_list:
-            rev_c_seq = reverse_and_complement(RNA_list)
-            rev_polypeptide_list = get_all_translations(rev_c_seq, genetic_code)
+        total_bases = len(RNA_list)
+        index = total_bases - 3
+        protein_list = ''
+        for i in range(index + 1):
+            end = i + 3
+            seq = RNA_list[i:end]
+            if seq == 'AUG':
+                protein = translate_sequence(RNA_list[i:], genetic_code)
+                protein_list += protein
+        return protein_list
+        for q in range(index + 1):
+            end = i + 3
+            seq = RNA_list[i:end]
+            if seq == 'AUG':
+                rev_c_seq = reverse_and_complement(RNA_list)
+                rev_polypeptide_list = get_all_translations(rev_c_seq, genetic_code)
+        return rev_polypeptide_list
+        if protein_list > rev_polypeptide_list :
+            return str(protein_list)
+        else:
             return str(rev_polypeptide_list)
+            
     else:
         return ''
     
-    
-    polypeptide_list = get_all_translations(RNA_list, genetic_code)
-    print(polypeptide_list)
-  #  offset = len(polypeptide_list)
-  #  rev_c_seq = reverse_and_complement(RNA_list)
-   # polypeptide_list = get_all_translations(rev_c_seq, genetic_code)
 
 
 if __name__ == '__main__':
