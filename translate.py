@@ -31,19 +31,15 @@ def translate_sequence(rna_sequence, genetic_code):
     RNA_list = rna_sequence.upper()
     while True:
         if len(RNA_list) > 2:
-            if RNA_list[0:3] == "UAA" or RNA_list[0:3] == "UAG" or RNA_list[0:3] == "UGA":
-                return ''
-                
-            else:
-                protein_seq = ''
-                list = len(RNA_list)%3
-                for i in range(0, len(RNA_list)-list, 3):
-                    protein = RNA_list[i:i+3]
-                    codon = genetic_code[protein]
-                    if codon == "*" :
-                        break
-                    protein_seq += codon
-                return protein_seq
+            protein_seq = ''
+            list = len(RNA_list)%3
+            for i in range(0, len(RNA_list)-list, 3):
+                protein = RNA_list[i:i+3]
+                codon = genetic_code[protein]
+                if codon == "*" :
+                    break
+                protein_seq += codon
+            return protein_seq
         else:
             return ''
             print("Base length is less than 3")
@@ -195,9 +191,9 @@ def get_longest_peptide(rna_sequence, genetic_code):
     
     polypeptide_list = get_all_translations(RNA_list, genetic_code)
     print(polypeptide_list)
-    #offset = len(polypeptide_list)
-   # rev_c_seq = reverse_and_complement(RNA_list)
-   # polypeptide_list = get_all_translations(rev_c_seq, genetic_code)
+    offset = len(polypeptide_list)
+    rev_c_seq = reverse_and_complement(RNA_list)
+    polypeptide_list = get_all_translations(rev_c_seq, genetic_code)
 
 
 if __name__ == '__main__':
