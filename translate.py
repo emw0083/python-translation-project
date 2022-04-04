@@ -36,8 +36,14 @@ def translate_sequence(rna_sequence, genetic_code):
             for i in range(0, len(RNA_list), 3):
                 codon = RNA_list[i:i+3]
                 protein_seq += genetic_code[codon]
-                if protein_seq == '*':
-                    return ''
+                #if protein_seq == "UAA":
+                 #   break
+                #if protein_seq == "UAG":
+                 #   break
+                #if protein_seq == "UGA":
+                 #   break
+                if protein_seq == "'*'" :
+                    break
             result.append(protein_seq)
             return protein_seq
         else:
