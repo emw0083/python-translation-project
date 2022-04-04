@@ -29,26 +29,25 @@ def translate_sequence(rna_sequence, genetic_code):
         A string of the translated amino acids.
     """
     RNA_list = rna_sequence.upper()
-    result = []
     while True:
         if len(RNA_list) > 2:
-            protein_seq = ""
-            for i in range(0, len(RNA_list), 3):
-                codon = RNA_list[i:i+3]
-                protein_seq += genetic_code[codon]
-                #if protein_seq == "UAA":
-                 #   break
-                #if protein_seq == "UAG":
-                 #   break
-                #if protein_seq == "UGA":
-                 #   break
-                if protein_seq == "'*'" :
-                    break
-            result.append(protein_seq)
-            return protein_seq
+            if RNA_list[0:3] == "UAA" or RNA_list[0:3] == "UAG" or RNA_list[0:3] == "UGA":
+                return ''
+                
+            else:
+                protein_seq = ''
+                list = len(RNA_list)%3
+                for i in range(0, len(RNA_list)-list, 3):
+                    protein = RNA_list[i:i+3]
+                    codon = genetic_code[protein]
+                    if codon == "*" :
+                        break
+                    protein_seq += codon
+                return protein_seq
         else:
             return ''
             print("Base length is less than 3")
+
             
 #--------------------------------------------------------------------
 
