@@ -197,6 +197,7 @@ def get_longest_peptide(rna_sequence, genetic_code):
         total_bases = len(RNA_list)
         index = total_bases - 3
         protein_list = ''
+        protein_list1 = ''
         for i in range(index + 1):
             end = i + 3
             seq = RNA_list[i:end]
@@ -210,14 +211,16 @@ def get_longest_peptide(rna_sequence, genetic_code):
             if seq == 'AUG':
                 rev_c_seq = reverse_and_complement(RNA_list)
                 rev_polypeptide_list = get_all_translations(rev_c_seq, genetic_code)
-        return rev_polypeptide_list
-        if protein_list > rev_polypeptide_list :
+                protein_list1 += rev_polypeptide_list
+        return protein_list1
+        if protein_list > protein_list1 :
             return str(protein_list)
         else:
-            return str(rev_polypeptide_list)
+            return str(protein_list1)
             
     else:
         return ''
+
     
 
 
