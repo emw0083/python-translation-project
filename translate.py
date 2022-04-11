@@ -212,7 +212,7 @@ def get_longest_peptide(rna_sequence, genetic_code):
                 rev_c_seq = reverse_and_complement(RNA_list)
                 rev_polypeptide_list = get_all_translations(rev_c_seq, genetic_code)
                 rev_list += rev_polypeptide_list
-        return protein_list1
+        return rev_list1 
         if len(protein_list) > len(rev_list) :
             return str(protein_list)
         else:
