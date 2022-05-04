@@ -187,42 +187,26 @@ def get_longest_peptide(rna_sequence, genetic_code):
         A string of the longest sequence of amino acids encoded by
         `rna_sequence`.
     """
-    
+    rna_sequence = rna_sequence.upper()
+    rna_sequence = rna_sequence.strip()
+    genetic_code = {'GUC': 'V', 'ACC': 'T', 'GUA': 'V', 'GUG': 'V', 'ACU': 'T', 'AAC': 'N', 'CCU': 'P', 'UGG': 'W', 'AGC': 'S', 'AUC': 'I', 'CAU': 'H', 'AAU': 'N', 'AGU': 'S', 'GUU': 'V', 'CAC': 'H', 'ACG': 'T', 'CCG': 'P', 'CCA': 'P', 'ACA': 'T', 'CCC': 'P', 'UGU': 'C', 'GGU': 'G', 'UCU': 'S', 'GCG': 'A', 'UGC': 'C', 'CAG': 'Q', 'GAU': 'D', 'UAU': 'Y', 'CGG': 'R', 'UCG': 'S', 'AGG': 'R', 'GGG': 'G', 'UCC': 'S', 'UCA': 'S', 'UAA': '*', 'GGA': 'G', 'UAC': 'Y', 'GAC': 'D', 'UAG': '*', 'AUA': 'I', 'GCA': 'A', 'CUU': 'L', 'GGC': 'G', 'AUG': 'M', 'CUG': 'L', 'GAG': 'E', 'CUC': 'L', 'AGA': 'R', 'CUA': 'L', 'GCC': 'A', 'AAA': 'K', 'AAG': 'K', 'CAA': 'Q', 'UUU': 'F', 'CGU': 'R', 'CGC': 'R', 'CGA': 'R', 'GCU': 'A', 'GAA': 'E', 'AUU': 'I', 'UUG': 'L', 'UUA': 'L', 'UGA': '*', 'UUC': 'F'}
 
-    RNA_list = rna_sequence.upper()
-    total_bases = len(RNA_list)
-    index = total_bases - 3
-    
-    if len(RNA_list) >= 3:
-        total_bases = len(RNA_list)
-        index = total_bases - 3
-        protein_list = ''
-        rev_list = ''
-        for i in range(index + 1):
-            end = i + 3
-            seq = RNA_list[i:end]
-            if seq == 'AUG':
-                protein = translate_sequence(RNA_list[i:], genetic_code)
-                protein_list += protein
-        return protein_list
-        for q in range(index + 1):
-            end = i + 3
-            seq = RNA_list[i:end]
-            if seq == 'AUG':
-                rev_c_seq = reverse_and_complement(RNA_list)
-                rev_polypeptide_list = get_all_translations(rev_c_seq, genetic_code)
-                rev_list += rev_polypeptide_list
-        return rev_list1 
-        if len(protein_list) > len(rev_list) :
-            return str(protein_list)
-        else:
-            return str(rev_list)
-            
-    else:
+    peptide = get_all_translations(rna_sequence = rna_sequence, genetic_code = genetic_code)
+    rev_comp = reverse_and_complement(sequence = rna_sequence)
+    rev_comp_peptide = get_all_translations(rna_sequence = rev_comp, genetic_code = genetic_code)
+
+    peptide += rev_comp_peptide
+    if len(peptide) < 1:
         return ''
 
-    
+    max_len = -1
+    for i in peptide:
+        if len(i) > max_len:
+            max_len = len(i)
+            longest = str(i)
 
+    return longest
+ 
 
 if __name__ == '__main__':
     genetic_code = {'GUC': 'V', 'ACC': 'T', 'GUA': 'V', 'GUG': 'V', 'ACU': 'T', 'AAC': 'N', 'CCU': 'P', 'UGG': 'W', 'AGC': 'S', 'AUC': 'I', 'CAU': 'H', 'AAU': 'N', 'AGU': 'S', 'GUU': 'V', 'CAC': 'H', 'ACG': 'T', 'CCG': 'P', 'CCA': 'P', 'ACA': 'T', 'CCC': 'P', 'UGU': 'C', 'GGU': 'G', 'UCU': 'S', 'GCG': 'A', 'UGC': 'C', 'CAG': 'Q', 'GAU': 'D', 'UAU': 'Y', 'CGG': 'R', 'UCG': 'S', 'AGG': 'R', 'GGG': 'G', 'UCC': 'S', 'UCA': 'S', 'UAA': '*', 'GGA': 'G', 'UAC': 'Y', 'GAC': 'D', 'UAG': '*', 'AUA': 'I', 'GCA': 'A', 'CUU': 'L', 'GGC': 'G', 'AUG': 'M', 'CUG': 'L', 'GAG': 'E', 'CUC': 'L', 'AGA': 'R', 'CUA': 'L', 'GCC': 'A', 'AAA': 'K', 'AAG': 'K', 'CAA': 'Q', 'UUU': 'F', 'CGU': 'R', 'CGC': 'R', 'CGA': 'R', 'GCU': 'A', 'GAA': 'E', 'AUU': 'I', 'UUG': 'L', 'UUA': 'L', 'UGA': '*', 'UUC': 'F'}
