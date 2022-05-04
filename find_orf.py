@@ -210,7 +210,7 @@ def find_first_orf(sequence,
     if start_codons == ["AUG"]:
         orf_pattern_str = r'AUG(...)+(UAA|UAG|UGA)'
     else:
-        orf_pattern_str = r'AAA([AUGC]{3})*UUU
+        orf_pattern_str = r'AAA([AUGC]{3})*UUU'
    
     ##########################################################################
 
