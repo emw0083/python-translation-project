@@ -211,7 +211,6 @@ def find_first_orf(sequence,
         orf_pattern_str = r'AUG(...)+(UAA|UAG|UGA)'
     else:
         orf_pattern_str = r'AAA([AUGC]{3})*UUU'
-   
     ##########################################################################
 
     # Create the regular expression object
