@@ -1,5 +1,16 @@
+
+
+
+
+
 def main():
     import argparse
+    import sys
+    import re
+    import find_first_orf
+    import translate_sequence
+    import parse_sequence_from_path
+
 
     # Create a command-line parser object
     parser = argparse.ArgumentParser()
